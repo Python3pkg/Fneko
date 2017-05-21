@@ -13,7 +13,7 @@ LINUX = system() in ['Linux', 'Unix']
 WINDOWS = system() in ['Windows']
 
 from threading import Thread, Lock
-from colorstr import color_str
+from .colorstr import color_str
 
 class ProcBar(Thread):
 	"""
@@ -80,7 +80,7 @@ class ProcBar(Thread):
 		return self.__mutex.release()
 
 	def __select_symbol(self):
-		return self.__default_symbols.get(self.__symbol, choice(self.__default_symbols.items())[1]) 
+		return self.__default_symbols.get(self.__symbol, choice(list(self.__default_symbols.items()))[1]) 
 
 	def __clear_context(self, final = False):
 		if self.__final:
@@ -107,7 +107,7 @@ class ProcBar(Thread):
 				cnt = self.__timeout * self.__frequency
 				forever_loop = False
 			else:
-			 	cnt = sys.maxint
+			 	cnt = sys.maxsize
 			 	forever_loop = True
 			sleep_time = 1 / float(self.__frequency)
 			symbol = self.__select_symbol()[::-1]

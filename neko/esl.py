@@ -1,14 +1,14 @@
 #!/usr/bin/env python 
 # -*- coding: utf-8 -*- 
 
-from colorstr import color_str
+from .colorstr import color_str
 
 # ESL包要先安装
 try:
-	import ESL
+	from . import ESL
 except ImportError as err:
 	if "No module named" in str(err):
-		print(color_str("this script base on ESL, I will install it first, please wait a moment...", "purple"))
+		print((color_str("this script base on ESL, I will install it first, please wait a moment...", "purple")))
 		import os
 		result = os.system("yum -y install python-devel")
 		result += os.system("yum -y install epel-release")
@@ -20,12 +20,12 @@ except ImportError as err:
 		result += os.system("yum install gcc-c++")
 		result += os.system("pip install python-esl")
 		if 0 != result:
-			print(color_str("sorry, there have some problems on auto-install ESL, please install it manually", "red"))
+			print((color_str("sorry, there have some problems on auto-install ESL, please install it manually", "red")))
 			import sys
 			sys.exit(result)
 		else:
-			import ESL
-			print(color_str("auto-install ESL successful", "green"))
+			from . import ESL
+			print((color_str("auto-install ESL successful", "green")))
 	else:
 		print(err)
 except Exception as err:
@@ -103,7 +103,7 @@ class ESLEvent:
 			if not self.__process(timeout):
 				res = False
 		else:
-			print("ERR :conntect freeswitch failed. %s:%d@%s" % (self.__ip, self.__port, self.__password))
+			print(("ERR :conntect freeswitch failed. %s:%d@%s" % (self.__ip, self.__port, self.__password)))
 			res = False
 
 		# 断开freeswtich的连接
@@ -136,7 +136,7 @@ if __name__ == '__main__':
 				session_id = event.getHeader("variable_session_id")
 				call_dir = event.getHeader("Caller-Direction")
 				sip_call_id = event.getHeader("variable_sip_call_id")
-				print("FREESWIRCH calling... uuid:%s session_id:%s direction:%s call-id:%s" % (uuid, session_id, call_dir, sip_call_id))
+				print(("FREESWIRCH calling... uuid:%s session_id:%s direction:%s call-id:%s" % (uuid, session_id, call_dir, sip_call_id)))
 			pass
 
 	event = MyEvent(options.host, options.port, options.password)

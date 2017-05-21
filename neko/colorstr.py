@@ -23,11 +23,11 @@ def color_str(s, color = 'white', need = True):
 		return s
 
 if __name__ == '__main__':
-	print(color_str("red", "red"))
-	print(color_str("yellow", "yellow"))
-	print(color_str("blue", "blue"))
-	print(color_str("green", "green"))
-	print(color_str("purple", "purple"))
-	print(color_str("gray", "gray"))
-	print(color_str("sky_blue", "sky_blue"))
-	print(color_str("white", "white"))
+	print((color_str("red", "red")))
+	print((color_str("yellow", "yellow")))
+	print((color_str("blue", "blue")))
+	print((color_str("green", "green")))
+	print((color_str("purple", "purple")))
+	print((color_str("gray", "gray")))
+	print((color_str("sky_blue", "sky_blue")))
+	print((color_str("white", "white")))

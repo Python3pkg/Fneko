@@ -1,14 +1,14 @@
 #!/usr/bin/env python 
 # -*- coding: utf-8 -*- 
 
-from colorstr import color_str
+from .colorstr import color_str
 
 # paramiko包要先安装
 try:
 	import paramiko
 except ImportError as err:
 	if "No module named" in str(err):
-		print(color_str("this script base on paramiko, I will install it first, please wait a moment...", "purple"))
+		print((color_str("this script base on paramiko, I will install it first, please wait a moment...", "purple")))
 		import os
 		result = os.system("yum -y install python-devel")
 		result += os.system("yum -y install epel-release")
@@ -18,12 +18,12 @@ except ImportError as err:
 		result += os.system("pip install pycrypto")
 		result += os.system("pip install paramiko")
 		if 0 != result:
-			print(color_str("sorry, there have some problems on auto-install paramiko, please install it manually", "red"))
+			print((color_str("sorry, there have some problems on auto-install paramiko, please install it manually", "red")))
 			import sys
 			sys.exit(result)
 		else:
 			import paramiko
-			print(color_str("auto-install paramiko successful", "green"))
+			print((color_str("auto-install paramiko successful", "green")))
 	else:
 		print(err)
 except Exception as err:

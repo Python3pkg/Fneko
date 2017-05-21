@@ -1,14 +1,14 @@
 #!/usr/bin/env python 
 # -*- coding: utf-8 -*- 
 from optparse import OptionParser 
-from colorstr import color_str
+from .colorstr import color_str
 import os,sys
 
 try:
 	import MySQLdb
 except ImportError as err:
 	if "No module named" in str(err):
-		print(color_str("this script base on MySQLdb, I will install it first, please wait a moment...", "purple"))
+		print((color_str("this script base on MySQLdb, I will install it first, please wait a moment...", "purple")))
 		result = os.system("yum -y install python-devel")
 		result += os.system("yum -y install epel-release")
 		result += os.system("yum -y install python-setuptools")
@@ -18,11 +18,11 @@ except ImportError as err:
 		result += os.system("yum install mysql-devel")
 		result += os.system("pip install mysql")
 		if 0 != result:
-			print(color_str("sorry, there have some problems on auto-install MySQLdb, please install it manually", "red"))
+			print((color_str("sorry, there have some problems on auto-install MySQLdb, please install it manually", "red")))
 			sys.exit(result)
 		else:
 			import MySQLdb
-			print(color_str("auto-install MySQLdb successful", "green"))
+			print((color_str("auto-install MySQLdb successful", "green")))
 	else:
 		print(err)
 except Exception as err:

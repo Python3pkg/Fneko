@@ -51,7 +51,7 @@ class tcpdump:
 			inet_ntoa(ioctl(s.fileno(), 0X8915, pack('256s', eth[:15]))[20:24])
 		except IOError as err:
 			if 'No such device' in str(err):
-				print(str(err) + ":" + eth)
+				print((str(err) + ":" + eth))
 				raise Exception(str(err) + ":" + eth)
 
 	def run(self):
@@ -71,7 +71,7 @@ class tcpdump:
 		self.cmd = cmd
 		self.p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, preexec_fn = os.setpgrp)
 		if self.debug:
-			print("run process. [%s]" % " ".join(self.cmd))
+			print(("run process. [%s]" % " ".join(self.cmd)))
 		return self.p
 
 	def pid(self):
@@ -96,7 +96,7 @@ class tcpdump:
 					break
 		
 		if self.debug:
-			print("terminate process. pid:%s [%s]" % (self.p.pid if self.p else "", " ".join(self.cmd)))
+			print(("terminate process. pid:%s [%s]" % (self.p.pid if self.p else "", " ".join(self.cmd))))
 		self.p.terminate()
 
 if __name__ == '__main__':
